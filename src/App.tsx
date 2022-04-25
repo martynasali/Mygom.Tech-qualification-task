@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Dropdown } from "./components/Dropdown/index";
-import {menuData, groupOptions} from './components/Dropdown/menuData'
+import {menuData, groupOptions} from './menuData'
 
 const App:React.FC  = () => {
   const [selectedOptions, setSelectedOptions] = useState<any>(menuData)
@@ -27,7 +27,8 @@ const App:React.FC  = () => {
     <Dropdown
       menuData={menuData}
       groupOptions={groupOptions}
-      multiple={6}
+      // multiple={6}
+      // single
       update={update}
       // onSelect={onSelect}
       // onOpen={onOpen}

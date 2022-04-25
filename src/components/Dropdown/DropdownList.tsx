@@ -11,18 +11,18 @@ type Props = {
         value: string; 
         selected: boolean; 
         group: string; }[];
-    groupOptions: {
+    groupOptions?: {
         name: string;
         max: number;
     }[]
     validationData:any
-    multiple:number;
+    multiple?:number|boolean;
     update: (info: any) => void
     onSelect?: () => void
     handleChange: (id: number, group:string) => void
  }
 
-const DropdownList:React.FC <Props> = ({groupOptions, data, update, onSelect, multiple, handleChange, validationData}:Props) =>{
+const DropdownList:React.FC <Props> = ({data, handleChange, multiple, validationData}:Props) =>{
     
     let PrevousGroup:string = '';
     let items = data.map((d, index)=>{
@@ -48,10 +48,11 @@ const DropdownList:React.FC <Props> = ({groupOptions, data, update, onSelect, mu
         return(
             <React.Fragment key={d.id+'hjk'}>
                 <div className='dropdown-divider'>
-                    <ValidationInfo
+                {multiple&&<small>{d.group}</small>}
+                {validationData&&<ValidationInfo
                         groupName={d.group}
-                        validation={validationData[d.group]} 
-                    />
+                        validation={validationData[d.group]}
+                    />}
                 </div>
                 <DropdownItem
                     key={d.id} 

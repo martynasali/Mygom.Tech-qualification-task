@@ -19,11 +19,11 @@ type Props = {
         value: string; 
         selected: boolean; 
         group: string; }[];
-    groupOptions: {
+    groupOptions?: {
         name: string;
         max: number;
     }[]
-    multiple:number;
+    multiple?:number|boolean;
     update:(info:any) => void
     onSelect?:()=>void
     onOpen?:() => void;
@@ -33,14 +33,14 @@ type Props = {
 
  const DropdownMain:React.FC <Props> = ({menuData, groupOptions, multiple, update, onSelect, onOpen, onClose, children}:Props) =>{
     const [data, setData] = useState<UseData>(menuData)
-    const [validationData, setvalidationData] = useState(dropdownValidation(data, groupOptions))
+    let validationData = groupOptions&&dropdownValidation(data, groupOptions)
     const [open, setOpen] = useState(false)
     const list = useRef<HTMLDivElement>(null);
+    console.log(multiple);
     
     function handleChange(id:number, group:string){
-        onSelect&&onSelect()
         let count = 0
-        if(select(id, group)){
+        if(multiple){
             for(let trues of data){
                 trues.selected&&count++
             }
@@ -49,15 +49,26 @@ type Props = {
                     return prev.map(p=>(p.id===id?{...p, selected:false}:p))
                 })
             }
-            else{
+            else {
                 setData(prev=>{
                     return prev.map(p=>(p.id===id?{...p, selected:!p.selected}:p))
                 })
             }
+        }else{
+        onSelect&&onSelect()
+        
+        if(select(id, group)){
+            for(let trues of data){
+                trues.selected&&count++
+            }
+                setData(prev=>{
+                    return prev.map(p=>(p.id===id?{...p, selected:!p.selected}:p))
+                })
         }
         !select(id, group)&&setData(prev=>{
             return prev.map(p=>(p.id===id?{...p, selected:false}:p))
         })
+        }
     }
 
     const select = (id: number, group:string) =>{
@@ -72,7 +83,7 @@ type Props = {
 
     useEffect(()=>{
         update(data)
-        setvalidationData(dropdownValidation(data, groupOptions))
+        validationData = groupOptions&&dropdownValidation(data, groupOptions)
     },[data])
 
     function HandleClick(e:any){

@@ -12,7 +12,6 @@ type groupOptions = {
 }[] 
 
 
-
 export const dropdownValidation = (data:data, groupOptions:groupOptions) =>{
 
     function findDifferentGroups(){

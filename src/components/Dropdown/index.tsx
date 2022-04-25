@@ -9,11 +9,12 @@ type Props = {
         selected: boolean;
         group: string;
     }[];
-    groupOptions: {
+    groupOptions?: {
         name: string;
         max: number;
     }[]
-   multiple:number;
+   multiple?:number|boolean;
+   single?:boolean
    update:(info:any) => void;
    onSelect?:() => void;
    onOpen?:() => void;
@@ -21,7 +22,11 @@ type Props = {
    children: ReactChild | ReactChildren;
 }
 
-export const Dropdown:React.FC <Props> = ({menuData, groupOptions, multiple, update, onSelect, onOpen, onClose, children}:Props) => {
+export const Dropdown:React.FC <Props> = ({menuData, groupOptions, multiple, single, update, onSelect, onOpen, onClose, children}:Props) => {
+    if(single === true){
+        multiple = 1
+    }
+
     return( 
     <>
         <DropdownMain 
