@@ -7,7 +7,7 @@ interface Props{
     
 }
 
-export const Button:React.FC<Props> = ({OpenDropdown, open, children}:Props)=>{
+export const Button:React.FC<Props> = ({OpenDropdown, children}:Props)=>{
     return (
         <div onClick={OpenDropdown}>
             {children}

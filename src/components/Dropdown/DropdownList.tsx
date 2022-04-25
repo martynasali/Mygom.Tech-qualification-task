@@ -17,8 +17,6 @@ type Props = {
     }[]
     validationData:any
     multiple?:number|boolean;
-    update: (info: any) => void
-    onSelect?: () => void
     handleChange: (id: number, group:string) => void
  }
 

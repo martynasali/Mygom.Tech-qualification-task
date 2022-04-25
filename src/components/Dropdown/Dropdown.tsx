@@ -15,7 +15,7 @@ type Props = {
     }[]
    multiple?:number|boolean;
    single?:boolean
-   update:(info:any) => void;
+   update?:(info:any) => void;
    onSelect?:() => void;
    onOpen?:() => void;
    onClose?:() => void;

@@ -24,7 +24,7 @@ type Props = {
         max: number;
     }[]
     multiple?:number|boolean;
-    update:(info:any) => void
+    update?:(info:any) => void
     onSelect?:()=>void
     onOpen?:() => void;
     onClose?:() => void;
@@ -82,7 +82,7 @@ type Props = {
     }
 
     useEffect(()=>{
-        update(data)
+        update&&update(data)
         validationData = groupOptions&&dropdownValidation(data, groupOptions)
     },[data])
 
@@ -121,8 +121,6 @@ type Props = {
                     validationData={validationData}
                     handleChange={handleChange}
                     data={data}
-                    onSelect={onSelect}
-                    update={update}
                     groupOptions={groupOptions}
                     multiple={multiple}
                 />}

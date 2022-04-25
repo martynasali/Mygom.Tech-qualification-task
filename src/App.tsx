@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Dropdown } from "./components/Dropdown/index";
+import { Dropdown } from "./components/Dropdown/Dropdown";
 import {menuData, groupOptions} from './menuData'
 
 const App:React.FC  = () => {
@@ -29,10 +29,7 @@ const App:React.FC  = () => {
       groupOptions={groupOptions}
       // multiple={6}
       // single
-      update={update}
-      // onSelect={onSelect}
-      // onOpen={onOpen}
-      // onClose={onClose}
+      // update={update}
     >
         <button className="DropdownButton">
           Dropdown
