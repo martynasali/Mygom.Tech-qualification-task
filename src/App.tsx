@@ -35,7 +35,6 @@ const App:React.FC  = () => {
           Dropdown
         </button>
     </Dropdown>
-    {selectedOptions&&selectedOptions.map((s:any)=><div key={s.id.toString()+'56'} ><p key={s.id.toString()+'34'}>{s.name}</p><h1 key={s.id.toString()+'44'}>{JSON.stringify(s.selected)}</h1></div>)}
   </>
   )
 }

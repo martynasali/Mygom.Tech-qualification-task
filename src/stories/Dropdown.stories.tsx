@@ -1,3 +1,4 @@
+import { uptime } from "process"
 import { ReactChild, ReactFragment, ReactPortal, useState } from "react"
 import { Dropdown } from "../components/Dropdown/Dropdown"
 export default {
@@ -45,11 +46,42 @@ return(
     <Dropdown
     menuData={menuData}
     groupOptions={groupOptions}
-    // multiple={6}
-    // single
   >
       <button className="DropdownButton">
         Dropdown
+      </button>
+  </Dropdown>)
+}
+
+export const DropdownDivChildrenWithData = () =>{
+  
+  let menuData = [
+    {id:1,  name:'lengvas', value:'pasirinkimas', selected: false, group:'pasirinkti'},
+    {id:2,  name:'tvirtas', value:'pasirinkimas', selected: false, group:'pasirinkti'},
+    {id:3,  name:'pigus', value:'pasirinkimas', selected: false, group:'pasirinkti'},
+    {id:4,  name:'pasirinkimas', value:'pasirinkimas', selected: false, group:'no-group'},
+    {id:5,  name:'pasirinkimas', value:'pasirinkimas', selected: false, group:'no-group'},
+    {id:6,  name:'pasirinkimas', value:'pasirinkimas', selected: false, group:'no-group'},
+    {id:7,  name:'pasirinkimas', value:'pasirinkimas', selected: false, group:'no-group'}
+  ]
+  let groupOptions = [
+    {name:'pasirinkti', max:2},
+    {name:'no-group', max:2},
+  ]
+  const [selectedOptions, setSelectedOptions] = useState<any>(menuData)
+
+  const update = (info:any) =>{
+    setSelectedOptions(info)
+  }
+
+return(
+    <Dropdown
+    menuData={menuData}
+    groupOptions={groupOptions}
+    update={update}
+  >
+      <button className="DropdownButton">
+        {selectedOptions.map((s:any)=>(<p>{s.name}:{JSON.stringify(s.selected)} </p>))}
       </button>
   </Dropdown>)
 }
